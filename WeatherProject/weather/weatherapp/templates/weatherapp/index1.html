@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: teal;
+        }
+
+        .main {
+            width: 400px;
+            height: 250px;
+            margin: 80px auto;
+            background-color: #FFFFF0;
+            box-shadow: 0px 31px 35px -26px #080c21;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .row {
+            padding-top: 100px;
+            height: 20px;
+
+            /* background-color: #FFFFF0; */
+        }
+
+        .left {
+            margin-top: 20px;
+            padding: 15px;
+        }
+
+
+        .left-img {
+
+            width: 60px;
+        }
+
+        .city {
+            font-size: 26px;
+            color: rgba(0, 0, 0, 0.9);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .tempreture {
+            padding-top: 10px;
+            font-size: 61px;
+            color: rgba(0, 0, 0, 0.9);
+            font-weight: 100;
+        }
+
+        .Humidity {
+            font-size: 21px;
+            color: rgba(0, 0, 0, 0.7);
+            padding-top: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+
+        }
+    </style>
+    <nav class="row1" style="background: white; color: black;padding-bottom: 15px;">
+        <div align="center">
+            <h1 class="col-md-3 text-center">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREhde5y4kbreggoaggke3V8tIjVPY2wHfAVw&usqp=CAU"
+                    alt="navIcon" class="left-img"> Weather Zone 
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREhde5y4kbreggoaggke3V8tIjVPY2wHfAVw&usqp=CAU"
+                    alt="navIcon" class="left-img">
+            </h1>
+        </div>
+    </nav>
+    <center>
+        <div class="row">
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <input type="text" name="city" placeholder="Search" size="40%">
+
+                <button type="submit">
+                    <i class="fa fa-search">submit</i>
+                </button>
+
+                <form>
+        </div>
+    </center>
+    <main class="main">
+        {% if city is not None %}
+        <div class="left">
+            <div class="city">
+                {{city}}
+            </div>
+            <div class="tempreture">
+                <img src='http://openweathermap.org/img/w/{{data.weather_icon}}.png' alt="icon" class="left-img" />
+                {{data.weather_temperature}}C
+            </div>
+            <center>
+                <div class="Humidity">
+                    Details : {{data.weather_description}}
+                </div>
+                <div class="Humidity">
+                    Humidity : {{data.weather_humidity}}%
+                </div>
+            </center>
+        </div>
+
+        <!-- <div class="right">
+            <div class="city-img">
+                <img src="https://e1.pxfuel.com/desktop-wallpaper/124/761/desktop-wallpaper-taj-mahal-agra-india-taj-mahal-at-night-3d-thumbnail.jpg" alt="tajmahal" class="right-img" />
+            </div>
+        </div> -->
+        {% endif %}
+    </main>
+</body>
+
+</html>
